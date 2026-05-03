@@ -1,9 +1,30 @@
 name = "FormalExplanationsNCC"
 uuid = "58ed1228-a809-4827-9192-2ab9d95cca4b"
+version = "1.1.0"
 authors = ["Hénoïk Willot"]
-version = "1.0.0-DEV"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+FormalExplanationsBase = "65ecc5ca-4c4f-4908-9971-4344901c0524"
+HiGHS = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
+JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+MLJBase = "a7f614a8-145f-11e9-1d2a-a57a1082229d"
+MLJModelInterface = "e80e1ace-859a-464e-9ed9-23947d8ae3ea"
+NaiveCredalClassifier = "f48f88b4-357d-4ca3-8c39-cae33f76017d"
+ResumableFunctions = "c5292f4c-5179-55e1-98c5-05642aab7184"
+RobustClassifiersBase = "622d6ea6-a39e-4f93-9edb-f7b18bf55eb6"
 
 [compat]
+CSV = "0.10.16"
+DataFrames = "1.8.2"
+FormalExplanationsBase = "1.0.1"
+HiGHS = "1.23.0"
+JuMP = "1.30.0"
+MLJBase = "1.13.0"
+MLJModelInterface = "1.12.1"
+ResumableFunctions = "1.0.5"
+RobustClassifiersBase = "1.1.1"
 julia = "1.10.10"
 
 [extras]

@@ -1,5 +1,19 @@
 module FormalExplanationsNCC
 
-# Write your package code here.
+export
+    PrimeImplicantExplainer,
+    fit,
+    explain,
+    explain_all,
+    fitted_params,
+    fitted_decisions
+
+
+
+include("MaximalityUtils.jl")
+include("PrimeImplicantExplanations/PrimeImplicantExplanations.jl")
+using .PrimeImplicantExplanations
+#include("CounterfactualExplanations/CounterfactualExplainer.jl")
+
 
 end
