@@ -2,6 +2,7 @@ module FormalExplanationsNCC
 
 export
     PrimeImplicantExplainer,
+    CounterfactualExplainer,
     fit,
     explain,
     explain_all,
@@ -13,7 +14,8 @@ export
 include("MaximalityUtils.jl")
 include("PrimeImplicantExplanations/PrimeImplicantExplanations.jl")
 using .PrimeImplicantExplanations
-#include("CounterfactualExplanations/CounterfactualExplainer.jl")
+include("CounterfactualExplanations/CounterfactualExplainer.jl")
+using .CounterfactualExplanations
 
 
 end

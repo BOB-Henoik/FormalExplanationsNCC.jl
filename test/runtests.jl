@@ -31,3 +31,16 @@ end
 for p in fitted_decisions(e).dominance_pairs
     println("$p : $(FormalExplanationsBase.explain_all(e,p))")
 end
+
+cf_explainer = CounterfactualExplainer(ncc)
+e2 = explainer(cf_explainer, mach, Xnew[1,:])
+FormalExplanationsBase.fit!(e2)
+println(FormalExplanationsBase.fitted_params(e2))
+for p in fitted_decisions(e2).incomparable_pairs
+    class1, class2 = split(p, " >< ")
+    explanations = FormalExplanationsBase.explain_all(e2,p)
+    println("$p  -> $class1 : $(explanations[class1]) \n $(' ' ^ textwidth(p)) -> $class2 : $(explanations[class2])")
+end
+for p in fitted_decisions(e2).dominance_pairs
+    println("$p : $(FormalExplanationsBase.explain_all(e2,p))")
+end
