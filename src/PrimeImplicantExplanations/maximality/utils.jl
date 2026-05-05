@@ -5,7 +5,7 @@ import FormalExplanationsNCC: compute_opp, compute_contrib, compute_threshold, d
 using ResumableFunctions
 using JuMP, HiGHS
 
-function fit(m::Maximality, class_fitresult, x)
+function fit_pi(m::Maximality, class_fitresult, x)
     (cond_prob, y_prob, decode_y, decode_x, names_x, cond_count, y_count) = class_fitresult
     n_y = length(y_prob)
     x_coded::Vector{Int64} = [Int64(int(x[i])) for i in range(1, size(x, 1))]
@@ -27,9 +27,9 @@ function fit(m::Maximality, class_fitresult, x)
     (x_coded, pred, dominance_oppponents, dominance_thresholds, dominance_contrib, incomparability_oppponents, incomparability_thresholds, incomparability_contrib, decode_y, decode_x, names_x)
 end
 
-function fitted_params(m::Maximality, fitresult)
+function fitted_params_pi(m::Maximality, fitresult)
     (x_coded, pred, dominance_oppponents, dominance_thresholds, dominance_contrib, incomparability_oppponents, incomparability_thresholds, incomparability_contrib, decode_y, decode_x, names_x) = fitresult
-    pred=fitted_decisions(m, fitresult)
+    pred=fitted_decisions_pi(m, fitresult)
     return (; x=Vector{String}(collect("$(decode_x[index].classes[x_coded[index]])" for index in 1:length(x_coded))),
         predictions=pred,
         dominance_thresholds=Dict(d => dominance_thresholds[decode_pred(m, fitresult, d)] for d in pred.dominance_pairs),
@@ -47,7 +47,7 @@ function fitted_params(m::Maximality, fitresult)
     )
 end
 
-function fitted_decisions(m::Maximality, fitresult)
+function fitted_decisions_pi(m::Maximality, fitresult)
     (_, pred, _, _, _, _, _, _, decode_y, _, _) = fitresult
     return (; undominated=Vector{String}(collect("$(decode_y.classes[class])" for class in pred.undominated)),
         dominance_pairs=Vector{String}(collect("$(decode_y.classes[d.dominant]) > $(decode_y.classes[d.dominate])" for d in pred.dominance_pairs)),

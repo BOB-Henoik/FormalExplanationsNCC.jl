@@ -1,11 +1,11 @@
 module PIMaximality
 
 export 
-    fit,
-    explain_maximality,
-    explain_all,
-    fitted_params,
-    fitted_decisions
+    fit_pi,
+    explain_maximality_pi,
+    explain_all_pi,
+    fitted_params_pi,
+    fitted_decisions_pi
 
 include("utils.jl")
 include("doubt.jl")

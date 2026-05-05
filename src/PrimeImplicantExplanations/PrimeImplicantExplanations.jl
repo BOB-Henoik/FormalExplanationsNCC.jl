@@ -22,21 +22,21 @@ mutable struct PrimeImplicantExplainer <: AbstractExplainer
     PrimeImplicantExplainer(ncc::NCClassifier) = new(ncc.decisionRule)
 end
 
-fit(E::PrimeImplicantExplainer, class_fitresult, x) = fit(E.decisionRule, class_fitresult, x)
+fit(E::PrimeImplicantExplainer, class_fitresult, x) = fit_pi(E.decisionRule, class_fitresult, x)
 
 @resumable function explain(E::PrimeImplicantExplainer, fitresult, i::String)
     if E.decisionRule isa Maximality
-        explain_maximality(fitresult, decode_pred(E.decisionRule, fitresult, i))
+        explain_maximality_pi(fitresult, decode_pred(E.decisionRule, fitresult, i))
     else
         @error("Predict method not implemented for decisionRule $M")
     end
 end
 
-explain_all(E::PrimeImplicantExplainer, fitresult, i::String) = explain_all(E.decisionRule, fitresult, decode_pred(E.decisionRule, fitresult, i))
+explain_all(E::PrimeImplicantExplainer, fitresult, i::String) = explain_all_pi(E.decisionRule, fitresult, decode_pred(E.decisionRule, fitresult, i))
 
-fitted_params(E::PrimeImplicantExplainer, fitresult) = fitted_params(E.decisionRule, fitresult)
+fitted_params(E::PrimeImplicantExplainer, fitresult) = fitted_params_pi(E.decisionRule, fitresult)
 
-fitted_decisions(E::PrimeImplicantExplainer, fitresult) = fitted_decisions(E.decisionRule, fitresult)
+fitted_decisions(E::PrimeImplicantExplainer, fitresult) = fitted_decisions_pi(E.decisionRule, fitresult)
 
 
 

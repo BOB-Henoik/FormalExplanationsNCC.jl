@@ -1,4 +1,4 @@
-@resumable function explain_maximality(fitresult, i::IncomparablePair)
+@resumable function explain_maximality_pi(fitresult, i::IncomparablePair)
     (x, _, _, _, _, _, incomparability_thresholds, incomparability_contrib, _, decode_x, names_x) = fitresult
 	@assert haskey(incomparability_thresholds, i)
 	ex_model = Model(HiGHS.Optimizer)
@@ -17,9 +17,9 @@
 	end
 end
 
-function explain_all(m::Maximality, fitresult, i::IncomparablePair)
+function explain_all_pi(m::Maximality, fitresult, i::IncomparablePair)
     explanations = Vector{String}()
-    for explanation in explain_maximality(fitresult, i)
+    for explanation in explain_maximality_pi(fitresult, i)
         push!(explanations, explanation)
     end
     explanations

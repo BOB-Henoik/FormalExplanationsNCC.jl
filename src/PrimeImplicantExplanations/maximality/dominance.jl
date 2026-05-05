@@ -1,4 +1,4 @@
-@resumable function explain_maximality(fitresult, d::DominancePair)
+@resumable function explain_maximality_pi(fitresult, d::DominancePair)
     (x, _, dominance_oppponents, dominance_thresholds, dominance_contrib, _, _, _, _, decode_x, names_x) = fitresult
 	@assert haskey(dominance_thresholds, d)
 
@@ -7,9 +7,9 @@
     end
 end
 
-function explain_all(m::Maximality, fitresult, d::DominancePair)
+function explain_all_pi(m::Maximality, fitresult, d::DominancePair)
     explanations = Vector{String}()
-    for explanation in explain_maximality(fitresult, d)
+    for explanation in explain_maximality_pi(fitresult, d)
         push!(explanations, explanation)
     end
     explanations
