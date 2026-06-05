@@ -2,13 +2,14 @@ import FormalExplanationsBase: AbstractExplainer, fit, explain, explain_all, fit
 import RobustClassifiersBase: compute_dominance_matrix, DecisionRuleTypes, IncomparablePair, DominancePair, Maximality, Prediction
 import MLJModelInterface: int
 import FormalExplanationsNCC: compute_opp, compute_contrib, compute_threshold, decode_pred, all_explanations_maximality
+using Tables
 using ResumableFunctions
 using JuMP, HiGHS
 
 function fit_cf(m::Maximality, class_fitresult, x)
     (cond_prob, y_prob, decode_y, decode_x, names_x, cond_count, y_count) = class_fitresult
     n_y = length(y_prob)
-    x_coded::Vector{Int64} = [Int64(int(x[i])) for i in range(1, size(x, 1))]
+    x_coded::Vector{Int64} = hasmethod(getindex, (typeof(Tables.getcolumn(x, 1)),Int)) ? [Int64(int(Tables.getcolumn(x, n)[1])) for n in Tables.columnnames(x)] : [Int64(int(Tables.getcolumn(x, n))) for n in Tables.columnnames(x)]
     
     pred::Prediction = Prediction(compute_dominance_matrix(m, class_fitresult, x_coded))
     dominance_oppponents::Dict{DominancePair, Vector{Int64}} = Dict(p => compute_opp(m, class_fitresult, x_coded, p) for p in pred.dominance_pairs)

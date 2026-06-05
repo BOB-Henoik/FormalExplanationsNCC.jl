@@ -22,7 +22,7 @@ mach = machine(ncc, X, y)
 MLJBase.fit!(mach)
 MLJBase.predict(mach, Xnew)
 pi_explainer = PrimeImplicantExplainer(ncc)
-e = explainer(pi_explainer, mach, Xnew[1,:])
+e = explainer(pi_explainer, mach, Xnew)
 FormalExplanationsBase.fit!(e)
 println(FormalExplanationsBase.fitted_params(e))
 for p in fitted_decisions(e).incomparable_pairs
