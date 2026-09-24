@@ -24,7 +24,7 @@ end
 
 fit(E::PrimeImplicantExplainer, class_fitresult, x) = fit_pi(E.decisionRule, class_fitresult, x)
 
-@resumable function explain(E::PrimeImplicantExplainer, fitresult, i::String)
+function explain(E::PrimeImplicantExplainer, fitresult, i::String)
     if E.decisionRule isa Maximality
         explain_maximality_pi(fitresult, decode_pred(E.decisionRule, fitresult, i))
     else
