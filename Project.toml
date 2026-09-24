@@ -1,6 +1,6 @@
 name = "FormalExplanationsNCC"
 uuid = "58ed1228-a809-4827-9192-2ab9d95cca4b"
-version = "1.1.1"
+version = "1.2.1"
 authors = ["Hénoïk Willot"]
 
 [deps]
